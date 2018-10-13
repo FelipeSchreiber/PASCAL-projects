@@ -1,0 +1,428 @@
+ABS (x) - função aritmética que calcula o valor absoluto do parâmetro x que pode ser integer ou real.
+
+ARCTAN (x) - calcula o valor do arcotangente, em radianos de um parâmetro que pode ser integer ou real.
+
+CHR (i) - função de transferência que retorna o caractere cujo valor ordinal é o parâmetro "i". Acessa valores da tabela ASCII.
+
+EXP (x) - função aritmética que calcula o valor real de e (base neperiana) elevado ao expoente x, que pode ser inteiro ou real.
+
+LN (x) - função que calcula o valor real do logaritmo natural de um inteiro ou real x, onde x>0. Ln(x) dar  erro se x<=0.
+
+ODD (i) - função booleana que retorna true se o argumento inteiro i não for divisível por 2, senão retorna false.
+
+ORD (x) - função de transferência que retorna um inteiro correspondente a posição de x no conjunto de valores definidos para o tipo de x.
+
+PACK (u,i,p) - função de transferência que empacota o conteúdo de um array u começando no componente i para o packed array p.
+
+PRED (x) - função que retorna o elemento predecessor de x na ordem de enumeração do tipo de x, caso ele exista. Pred (x) dar  um erro se x for o menor elemento do tipo.
+
+ROUND (r) - função de transferência que calcula o valor de trunc(r+0.5) se r>0.0 ou trunc(r-0.5) sendo r do tipo real, e retorna um inteiro se este existir. Senão dará  erro.
+
+SIN (x) - função que calcula o valor real do seno do parâmetro x que pode ser inteiro ou real, sendo x em radianos.
+
+SQR (x) - função que calcula o valor real de x*x se x for real ou o valor inteiro de x*x se x for inteiro. Dará  erro se este não existir.
+
+SQRT (x) - função que calcula a raiz quadrada de valor real não negativo de x que pode ser inteiro ou real. Dará  erro se x<0.
+
+SUCC (x) - função que retorna o elemento que sucede x na lista de enumeração do tipo de x, se este existir. Dará  erro se x for o último valor desta lista.
+
+TRUNC (r) - função de transferência que calcula o maior inteiro menor que r se r>0.0 ou o menor inteiro maior que r se r<0.0, se este elemento existir no tipo integer. Caso contrário dará  erro.
+
+UNPACK (p,u,i) - função de transferência que desempacota o packed array p para o array u começando do elemento i de u.
+ 
+
+FUNÇÕES STRING
+
+- STR
+            sintaxe: STR (Num:totcasas:decimais, Stri);
+
+            descrição: Este procedimento retorna em Stri uma string convertida a partir de Num, que pode ser inteiro ou real, podendo ainda se utilizar do recurso de formatação de campos. Exemplos:
+            Num := 400
+            STR (Num:5,Stri);
+            o valor de Stri e ' 400'
+
+            nureal := 30.5;
+            STR (nureal:5:1,Novalor);
+            o valor de Novalor é ‘ 30.5'
+
+- VAL
+            sintaxe: VAL (Stri,numero,status);
+
+            descrição: O procedimento VAL realiza o inverso de STR, converte uma sequência (string) em valor e devolve-o a variável numero, na forma real ou inteiro dependendo de sua definição anterior. A variável status é um parâmetro de variável usado para indicar o sucesso ou fracasso da conversão. Ele será ajustado para zero se a conversão for bem sucedida; caso contrário seu valor indicará a posição na string Stri que causou erro na conversão. Status e numero não devem ser constante ou expressão, é importante também que a variável Stri não contenha espaços ou caracteres não numéricos, contudo é permitida notação científica.
+            Stri :='1234';
+            VAL (Stri,nuint,erro);
+            o valor de nuint é 1234
+            o valor de erro é 0
+
+- CONCAT
+            sintaxe: CONCAT(strI,strII, ... strN);
+
+            descrição: Retorna uma string que é o resultado da concatenação das n strings parâmetro. Esta função é definida no Turbo Pascal, apenas para ser mantida a compatibilidade com o Pascal Padrão, pois normalmente usamos o operador + com o mesmo efeito.
+            Strei :='Nao ';
+            Estre :='necessaria';
+            Result:=Concat (Strei,Estre);
+            o valor retornado ' 'Nao necessaria'
+
+- COPY
+            sintaxe: COPY(Stri, Pos, Num)
+
+            descrição: Esta função retorna uma String que ' copiada da Stri a partir de Pos e contém Num elementos, Pos e Num são do tipo inteiro.
+
+            Result1:=COPY ('12345ab',6,2); o valor retornado será 'ab'
+            Result2:=COPY ('12345AB',1,5); o valor retornado será '12345'
+
+- DELETE
+            sintaxe: DELETE (Stri, Pos, Num);
+
+            descrição: Este procedimento elimina da string Stri, Num caracteres a partir da posição Pos, inclusive. Pos e Num são do tipo inteiro.
+
+            Stri :='MISTURA'
+            DELETE (Stri,3,2); o valor retornado será 'MIURA'
+
+- LENGTH
+            sintaxe: LENGTH (Stri);
+
+            descrição: Esta função retorna a quantidade de caracteres em Stri, o que significa o tamanho efetivo da string Stri. Como mencionamos o tamanho da string em Turbo Pascal fica armazenado na posição zero da string, portanto Length (Stri) é equivalente a Ord(Stri[0]).
+
+            Nome:= ‘Ana Maria';
+            k:= LENGTH(Nome); o valor retornado será 9
+
+- POS
+            sintaxe: POS (Str1,Str2);
+
+            descrição: Esta função retorna a posição do primeiro caracter de Str1 dentro de Str2. Se não existir, retornará 0. Valor inteiro.
+
+            Nome:= ‘ANa Maria';
+            k:= POS(' ',Nome); o valor retornado será 4.
+ 
+ 
+
+FUNÇÕES PARA CONTROLE DE TELA
+
+ 
+
+
+KEYPRESSED - Função o booleana que retoma verdadeiro se alguma tecla for acionada.
+
+LOWVIDEO - Procedimento que diminui a intensidade luminosa do vídeo.
+
+HIGHVIDEO - Procedimento que aumenta a intensidade luminosa do vídeo.
+
+NORMVIDEO - Procedimento que deixa normal a intensidade do vídeo.
+
+WINDOW - Procedimento que define uma janela na tela. Esta janela é definida pelas coordenadas dos cantos superior esquerdo e inferior direito. As linhas são numeradas de 1 a 25 e as colunas numeradas de 1 a 80. Forma geral:
+
+            WINDOW (X1,Y1,X2,Y2);
+            onde: X1 = n° da coluna do 1° ponto
+                     Y1 = n° da linha do 1° ponto
+                     X2 = n° da coluna do 2° ponto
+                     Y2 = n° da linha do 2° ponto
+
+CLRSCR - Procedimento para deletar o conteúdo de uma WINDOW e posicionar o cursor no canto superior direito. Quando não se define Window, a função CLRSCR, limpa toda a tela.
+
+GOTOXY - Procedimento que possibilita o endereçamento de tela, para os procedimentos READ e WRITE. O procedimento GOTOXY obedece aos limites definidos pela Window. Forma geral:
+
+                GOTOXY (Col,Lin);
+                    Col - coluna de endereçamento
+                     Lin - linha de endereçamento
+
+TEXTCOLOR - Procedimento que seleciona a cor dos caracteres de Texto. Forma geral:
+
+                TEXTCOLOR (cor);
+
+TEXTBACKGROUND - Procedimento que seleciona a cor de fundo para vídeo. Forma geral:
+
+                TEXTBACKGROUND (cor)
+
+                    Tabela de Cores:
+                                                0 PRETO
+                                                1 AZUL
+                                                2 VERDE
+                                                3 CIANO
+                                                4 VERMELHO
+                                                5 MAGENTA
+                                                6 MARROM
+                                                7 CINZA CLARO
+                                                8 CINZA ESCURO
+                                                9 AZUL CLARO
+                                                10 VERDE CLARO
+                                                11 CIANO CLARO
+                                                12 ALARANJADO
+                                                13 MAGENTA CLARO
+                                                14 AMARELO
+                                                15 BRANCO
+
+DELAY - Procedimento utilizado para retardar a instrução seguinte. Forma geral:
+
+            DELAY (N)
+                onde: N é o tempo de retardo, que varia em função do CLOCK da máquina.
+ 
+
+
+MENSAGENS DE ERROS DO SISTEMA TURBO-PASCAL VERSÃO 7.0
+
+
+            A versão 7.0 do Pascal apresenta o mesmo sistema das versões anteriores no que diz respeito as mensagens de erros, pois também divide os erros em categorias: Erros de Compilação, Erros em tempo de Execução provenientes do DOS ou I/O e Erros Críticos. Também na versão 7.0 mantêm-se a característica de se apontar o erro com o cursor se posicionando sobre o erro, com a mensagem sendo destacada na linha de comandos.
+ 
+ 
+
+ERROS DE COMPILAÇÃO
+
+ 1 Out of memory - Este erro ocorre quando a quantidade de memória disponível no equipamento não é suficiente para compilar o programa. Algumas soluções podem ser tentadas para solucionar este problema:
+- Compilar o Programa com destino para o disco e não para memória, para isto utilizamos a opção DESTINATION DISK
+- Utilizar a opção LINK BUFFER DISK de modo a utilizar o disco e não a RAM como buffer de enlace.
+- Retirar todos os utilitários instalados na memória.
+- Compilar através do TPC.EXE, o qual é um arquivo menor que o TURBO.EXE.
+- Dividir o programa em UNITS, compilando-as separadamente.
+2 Identifier expected - Identificador esperado. Neste local era esperado um identificador, ou houve a tentativa de redefinir uma palavra reservada.
+3 Unknown identifier - Identificador não declarado no programa.
+4 Duplicate identifier - Identificador repetido no mesmo bloco.
+5 Syntax error - Erro de sintaxe. Existe algum caracter ilegal na declaração ou os "abre-fecha" aspas em torno de uma string não estão corretos.
+6 Error in real constant - Constante real inválida.
+7 Error in integer constant - Constante inteira inválida.
+8 String constant exceeds line - Constante string maior que 255. Verificar os "abre-fecha" aspas.
+10 Unexpected end of file - Fim de Arquivos esperado. Pode-se verificar:
+- o casamento dos begin-end.
+- o casamento de "abre-fecha" chaves de comentários.
+- se algum arquivo de inclusão está finalizando de forma inválida.
+- o compilador não encontrou o end de final de arquivo.
+11 Line too long - Linha muito longa, ultrapassando o limite de 126 caracteres.
+12 Type identifier expected - Identificador de tipo era esperado.
+13 Too many open files - Muitos arquivos abertos ao mesmo tempo. Este erro ocorre quando não existe o arquivo CONFIG.SYS, ou foram abertos mais arquivos do que o especificado no arquivo de configuração, indica-se FILES=20.
+14 Invalid file name - Arquivo não encontrado. Verificar se os nomes estão corretos ou se existe a especificação do caminho.
+15 File not found - Arquivo não encontrado no diretório. Verificar nome e caminho.
+16 Disk full - Disco cheio. Delete alguns arquivos desnecessários ou utilize outro disco.
+17 Invalid compiler directive - Diretiva de compilação incorreta.
+18 Too many files - Existem muitos arquivos envolvidos na compilação do programa.
+19 Undefined type in pointer definition - Tipo pointer não definido.
+20 Variable identifier expected - Identificador de variável esperado.
+21 Error in type - Erro em definição de tipo, o caracter encontrado é inválido.
+22 Structure too large - Tipo estruturado com mais de 65520 bytes.
+23 Set base type out of range - Tipo base fora do intervalo de 0 a 255 ou tipos enumerados maior que 256.
+24 File components may not be files - Arquivos de arquivo não é uma estrutura permitida.
+25 Invalid string length - String com mais de 255 caracteres.
+26 Type mismatch - Tipo trocado. Pode-se verificar o seguinte:
+- incompatibilidade de tipos em um comando de atribuição.
+- incompatibilidade de parâmetros e argumentos num procedimento ou função.
+- incompatibilidade entre índices de vetores em uma declaração.
+- incompatibilidade entre tipos de operandos em uma expressão.
+27 Invalid subrange base type - Intervalo de variação do tipo base está inválido.
+28 Lower bound greather than upper bound - Limite superior do intervalo é maior que o do tipo.
+29 Ordinal type expected - Tipo ordinal esperado, outro tipos como string, real, pointer não são aceitos.
+30 Integer constant expected - Constante inteira esperada.
+31 Constant expected - Constante esperada.
+32 Integer ou real constant expected - Constante real ou inteira esperada.
+33 Type identifier expected - Identificador de tipo esperado.
+34 Invalid function result type - Como resultado de uma função somente _ esperado um tipo simples, string e pointer.
+35 Label identifier expected - Identificador de rótulo esperado.
+36 BEGIN expected - BEGIN esperado.
+37 END expected - END esperado.
+38 Integer expression expected - Expressão inteira esperada.
+39 Ordinal expression expected - Expressão ordinal esperada.
+40 Boolean expression expected - Expressão booleana esperada.
+41 Operand types do not match operator - Tipo do operando incompatível com o tipo do operador.
+42 Error in expression - Verifique a validade de sua expressão.
+43 Illegal assignment - Não é permitido atribuir valores a variáveis sem tipo, nem a arquivos. Outra verificação é que um identificador de função somente poderá receber valores dentro da própria função.
+44 Field identifier expected - Identificador de campo esperado.
+45 Object file too large - Arquivo .OBJ com mais de 64 kb.
+46 Undefined external - External indefinido.
+47 Invalid object file record - Inválido registro de arquivo objeto.
+48 Code segment too large - Programa ou unidade ultrapassou o limite de 65 Kb.
+49 Data segment too large - Arquivo de dados ultrapassou limite de 65 Kb.
+50 DO expected - Comando DO esperado.
+51 Invalid PUBLIC definition - Inválida definição PUBLIC.
+52 Invalid EXTRN definition - Inválida definição EXTRN.
+53 Too many EXTRN definitions - Número de EXTRN superior a 256.
+54 OF expected - Cláusula OF esperada.
+55 Interface expected - Cláusula INTERFACE esperada.
+56 Invalid relocatable reference - Referência realocável inválida.
+57 THEN expected - THEN esperado.
+58 TO or DOWNTO expected - TO ou DOWNTO esperado.
+59 Undefined FORWARD - FORWARD indefinido:
+- A procedure ou função foi declarada na INTERFACE, mas esta declaração nunca ocorreu na IMPLEMENTATION.
+- A procedure ou função foi declarada com FORWARD, mas esta definição não foi encontrada.
+61 Invalid typecast - Concatenação de tipos inválidos.
+62 Division by zero - Divisão por zero.
+63 Invalid file type - Tipo de arquivo inválido.
+64 Cannot Read or Write variables of this type - Não é possível usar uma variável deste tipo com os procedimentos READ ou WRITE.
+65 Pointer variable expected - Variável do tipo POINTER esperada.
+66 String variable expected - Variável do tipo STRING esperada.
+67 String expression expected - Expressão do tipo STRING esperada.
+68 Circular unit reference - UNIT não encontrada. Possivelmente não definida na USES.
+69 Unit name mismatch - UNIT com nome trocado. UNIT declarada porém não existe o correspondente arquivo .TPU.
+70 Unit version mismatch - Versão incorreta, deve-se recompilar as UNITS.
+71 Duplicate unit name - UNIT com nome duplicado.
+72 Unit file format error - Arquivo .TPU de alguma UNIT com problema.
+73 Implementation expected - IMPLEMENTATION esperado.
+74 Constant and case types do not match - Tipos trocados entre as constantes do CASE e a variável seletor.
+75 Record variable expected - Variável do tipo registro esperada.
+76 Constant out of range - Constante fora dos limites.
+77 File variable expected - Variável do tipo arquivo esperada.
+78 Pointer expression expected - Expressão do tipo POINTER esperada.
+79 Integer or real expression expected - Expressão do tipo inteiro ou real esperada.
+80 Label not within current block - LABEL não está presente neste bloco.
+81 Label already defined - LABEL já definido.
+82 Undefined label in preceding statement part - LABEL não definido na área anterior ao comando.
+83 Invalid @ argument - Inválido argumento @.
+84 UNIT expected - UNIT esperada.
+85 ";" expected - ; esperado.
+86 ":" expected - : esperado.
+87 "," expected - , esperada.
+88 "(" expected - ( esperado.
+89 ")" expected - ) esperado.
+90 "=" expected - = esperado.
+91 ":=" expected - := esperado.
+92 "[" or "(." expected - [ ou ( esperado.
+93 "]" or ".)" expected - ] ou ) esperado.
+94 "." expected - . esperado.
+95 ".." expected - .. esperado.
+96 Too many variables - Muitas variáveis. O total de variáveis não pode ultrapassar o limite dos 64KB, considerando: procedimentos, funções, units e programas.
+97 Invalid FOR control variable - Variável do FOR inválida.
+98 Integer variable expected - Variável inteira esperada.
+99 Files are not allowed here - Arquivos não podem ser usados aqui.
+100 String length mistmatch - String com comprimento incompatível
+101 Invalid ordering of fields - Ordenação inválida dos campos.
+102 String constant expected - Constante do tipo string esperada.
+103 Integer or real variable expected - Variável inteira ou real esperada.
+104 Ordinal variable expected - Variável escalar esperada.
+105 INLINE error - Erro no comando INLINE.
+106 Character expression expected - Expressão do tipo caracter esperada.
+107 Too many relocations items - Muitos itens a serem realocados. Seu programa ultrapassou o limite de tamanho e deve ser dividido em partes, usando a unidade DOS, através do procedimento EXEC.
+108 Overflow in arithmetic operation - O resultado da operação aritmética anterior não está na faixa LongInt. Corrija a operação ou utilize um valor do tipo real ao invés de valores do tipo inteiro.
+109 No enclosing FOR, WHILE, or REPEAT statement - Os procedimentos padrão Break e Continue não podem ser utilizados fora dos comandos For, While ou Repeat.
+112 CASE constant out of range - Constante do CASE maior que 32676 ou menor que -32768.
+113 Error in statement - Erro no comando. Verifique se o nome da função ou procedure está correto.
+114 Cannot call an interrupt procedure - Não se pode fazer uma chamada a um procedimento interrompido.
+116 Must be in 8087 mode to compile this - As operações que utilizam números reais do tipo SINGLE, DOUBLE, EXTENDED E COMP, exigem um Co-processador 8087 ou 80287.
+117 Target address not found - Houve erro com a opção FIND ERROR do menu de compilação e não foi encontrado o local do erro procurado.
+118 Include files are not allowed here - Não é aceito a inclusão de arquivos neste local.
+119 No inherited methods are accessible here - Você está utilizando a palavra chave inherited fora do método ou em um método do tipo objeto que não tem ancestral.
+121 Invalid qualifier - Qualificador inválido. Verificar:
+- Quando usar conjuntos indexar apenas uma variável.
+- Quando especificar campos, definir antes qual o registro.
+- A referência somente pode se retirada das variáveis tipo pointer.
+122 Invalid variable reference - Para chamar uma função do tipo pointer deve-se tirar a referência ao resultado.
+123 Too many symbols - Os símbolos utilizados por seu programa ou UNIT ultrapassam os 64Kb.
+124 Statement part too large - Verifique se a parte de execução de seu programa ultrapassa os 24KB.
+126 Files must be var parameters - É esperado pelo Pascal que seus arquivos tenham parâmetros do tipo VAR.
+127 Too many conditional symbols - Símbolos condicionais em excesso.
+128 Misplaced condicional directive - Diretiva de compilação condicional incompleta.
+129 ENDIF directive missing - Falta diretiva {$ENDIF} da diretiva {$IFYYY}.
+130 Error in initial conditional defines - Erro nas definições das condições iniciais.
+131 Header does not match previous definition - Cabeçalho não corresponde ao que foi definido na parte de INTERFACE ou FORWARD, do cabeçalho do procedimento ou função.
+133 Canot evaluate this expression - Não é possível avaliar esta expressão.
+134 Expression incorrectly terminated - Expressão terminada incorretamente.
+135 Invalid format specifier - Especificador de formato inválido.
+136 Invalid indirect reference - Referência indireta inválida.
+137 Structured variables are not allowed here - Variáveis estruturadas não são permitidas aqui.
+138 Cannot evaluate without system unit - Avaliação não é possível sem a unit system.
+139 Cannot acess this symbol - Não é permitido acessar este símbolo.
+140 Invalid floating-point operation - Operação de ponto flutuante inválida ou divisão por zero.
+141 Cannot compile overlays to memory - Não é possível compilar overlays na memória.
+142 Procedural or function variable expected - Variável procedure ou função esperada.
+143 Invalid procedure or function reference - Referência inválida em procedure ou função.
+144 Cannot overlay this unit - Não é possível tornar esta unit num overlay.
+146 File access denied - O arquivo não pode ser aberto ou criado. O compilador está tentando escrever para um arquivo somente de leitura.
+147 Object type expected - O identificador não reconhece um tipo objeto.
+148 Local object types are not allowed - O tipo objeto não pode ser definido dentro do escopo de um programa ou unidade e não pode ser definido dentro de procedimentos e funções.
+149 VIRTUAL expected - A palavra reservada Virtual não foi encontrada.
+150 Method identifier expected - O identificador não significa um método.
+151 Virtual constructors are not allowed - Virtual construtor não é permitido.
+152 Constructor identifier expected - Identificador constructor esperado ou não reconhecido.
+153 Destructor identifier expected - Identificador destructor esperado ou não reconhecido.
+154 Fail only allowed within constructors - O procedimento padrão Fail só pode ser utilizado dentro de constructors.
+155 Invalid combination of opcode and operands - Operação de código Assembler não aceita esta combinação de operandos. Pode ocorrer excesso ou falta de operandos, ou o tipo e ordem não estão de acordo com o código Assembler.
+156 Memory reference expected - O operador Assembler não é uma referencia de memória, a qual é requerida aqui. Muito provavelmente você esqueceu de colocar colchetes em torno do registrador.
+157 Cannot add or subtract relocatable symbols - A única operação aritmética que pode ser realizada com símbolo realocável em um operando Assembler é adição o ou subtração de constantes. Variáveis, procedimentos, funções e rótulos são símbolos realocáveis.
+158 Invalid register combination - Combinação de registrador inválida.
+159 Instructions are not enabled - Use a diretiva de compilação {$G+} para permitir operações de código no 286/287, mas esteja consciente que o código resultante não pode rodar nas máquinas 8086 e 8088.
+160 Invalid symbol reference - Esse símbolo não pode ser acessado em um operando Assembler.
+161 Code generation error - Parte do comando precedente contêm uma instrução LOOP ou outra que não pode atingir o seu término.
+162 ASM expected - Você está tentando compilar uma função ou procedimento em Assembler que contêm o comando Begin...End ao invés de Asm...End.
+ 
+
+RUNTIME ERRORS
+ 
+
+            Os RUNTIME ERRORS ou Erros em tempo de execução podem ser classificados em:
+            DOS ERRORS - Erros do DOS (1 a 99).
+            I/O ERRORS - Erros de Entrada e Saída (100 a 149).
+            CRITICAL ERRORS - Erros críticos (150 a 199).
+            FATAL ERRORS - Erros fatais (200 a 255).
+            Um erro em tempo de execução interrompe o processamento e envia para o vídeo a seguinte mensagem:
+
+            RUNTIME ERROR nnn AT xxxx:yyyy
+            onde: nnn - representa o número do erro.
+            xxxx:yyyy - representa o endereço do erro.
+ 
+
+DOS ERRORS
+ 
+1 Invalid function number - Chamada de função inexistente no DOS.
+2 File not found - Arquivo solicitado pelo RESET, APPEND, RENAME ou ERASE, não foi encontrado.
+3 Path not found - Não foi encontrado o caminho indicado, verificar a estrutura de subdiretórios, bem como as linhas de chamadas de arquivos neste subdiretório.
+4 Too many open files - Verifique a existência de um arquivo CONFIG.SYS, que deverá indicar o número máximo de arquivos que podem ser abertos ao mesmo tempo.
+5 File access denied - Não foi possível acessar os arquivos através do RESET, APPEND, FILEMODE, REWRITE, RENAME, ERASE, MKDIR, RMDIR, READ, BLOCKREAD, WRITE OU BLOCKWRITE.
+6 Invalid file handle - Erro no manuseio do arquivo, verificar se a variável referente ao nome do arquivo não foi alterada.
+12 Invalid file access code - Arquivo indicado pelo RESET ou APPEND tem um valor de FILEMODE inválido, causando código inválido de acesso ao arquivo.
+15 Invalid drive number - Driver inválido, erro acusado pelo GETDIR.
+16 Cannot remove current directory - Impossível remover o diretório atual, erro acusado pelo RMDIR.
+17 Cannot rename across drives - Impossível renomear o nome do arquivo pois os dois se encontram no mesmo driver. Erro acusado pelo RENAME.
+18 No more files -Relatado pela variável DOSERROR na unidade DOS e WINDOS, quando FINDFIRST ou FINDNEXT não encontra arquivo que combine com o nome de arquivo especificado e atributos.
+ 
+
+I/O ERRORS
+ 
+
+            Os erros de entrada e saída podem ser tratados através da diretiva {$I}. O valor default desta diretiva é {$I+}, isto provoca uma interrupção na execução do programa, sempre que ocorrer erros. A outra opção para esta diretiva é {$I-}, o que não acarretará a interrupção do programa, porém um código de erro é emitido, podendo ser recolhido pela função IORESULT e com isto tomarmos as providências necessárias.
+
+ 100 Disk read error - Tentativa de ler uma variável após o final do arquivo, ocasionando erro de leitura.
+101 Disk write error - Não há espaço no disco para gravação.
+102 File not assigned - Não foi feita a associação do arquivo através do ASSIGN.
+103 File not open - Arquivo não foi aberto, ocorre num CLOSE, READ, WRITE, SEEK, EOF, FILEPOS, FILESIZE, FLUSH, BLOCKWRITE, BLOCKREAD.
+104 File not open for input. Arquivo não aberto para entrada de dados, refere-se a um arquivo tipo texto.
+105 File not open output - Arquivo não foi aberto para saída de dados, refere-se também a um arquivo tipo texto.
+106 Invalid numeric format - Valor numérico incompatível com arquivo tipo texto.
+ 
+
+CRITICAL ERRORS
+ 
+
+150 Disk is write-protected - Disco Protegido contra gravação.
+151 Unknown unit - UNIT não encontrada no disco.
+152 Drive not ready - Disco não formatado ou com defeito.
+153 Unknown command - Comando não conhecido pelo Pascal.
+154 CRC error in data - Setor ruim.
+155 Bad drive request structure length - Acesso a disco danificado.
+156 Disk seek error - Erro de procura em disco.
+157 Unknown media type - Tipo de comunicação não encontrado.
+158 Sector not found - Setor não encontrado, disco com problemas.
+159 Printer out of paper - Impressora sem papel.
+160 Device write fault - Direcionamento de saída com defeito.
+161 Device read fault - Direcionamento de leitura com defeito.
+162 Hardware failure - Hardware falhando.
+ 
+
+FATAL ERRORS
+ 
+
+200 Division by zero - Divisão por zero.
+201 Range check error - Intervalo de variação do índice de um array está fora da faixa.
+202 Stack overflow error - Falta de espaço na pilha de alocação de variáveis locais de um subprograma, pode-se solucionar através da opção MEMORY SIZES do menu de compilação.
+203 Heap overflow error - Espaço insuficiente na memória para o HEAP.
+204 Invalid pointer operation - Operação com variáveis do tipo POINTER inválida.
+205 Floating point overflow - Operação com ponto flutuante causando transbordo de memória.
+206 Floating point underflow - Operação causando transbordo negativo de memória, ocorre geralmente quando se trabalha com co-processador 8087.
+207 Invalid floating point operation - Operação com ponto flutuante inválida, por exemplo SRQT ou LN de valor negativo, estouro de pilha com 8087.
+208 Overlay manager not installed - Gerenciador de overlay não foi instalado.
+209 Overlay file read error - Erro na leitura do arquivo overlay.
+210 Object not initialized - Com uma faixa de verificação em operação você fez um chamado para um método de objeto virtual antes que o objeto tenha sido inicializado via a chamada do constructor.
+211 Call to abstract method - Este erro é gerado por um procedimento abstrato numa unidade objeto; isto indica que o seu programa tenta executar um método abstrato virtual.
+212 Stream registration error - Este erro é gerado pelo procedimento REGISTER TYPE na unidade objeto.
+213 Collection index out of range - O índice passado para o método de uma TCollection está fora de faixa.
+214 Collection overflow error - O erro é relatado por uma TCollection se uma tentativa é feita para adicionar um elemento quando a coleção não pode ser expandida.
+215 Arithmetic overflow error - Este erro é relatado por um comando compilado na diretiva {$Q+} quando uma operação aritmética inteira provoca um estouro tal qual quando o resultado de uma operação está fora da faixa suportada.
+
+
+ 
+	
